@@ -1,0 +1,13 @@
+{
+  "name": "spring-boot-house-style",
+  "version": "1.0.0",
+  "description": "Opinionated Java 21 / Spring Boot 3 conventions: feature packages, Lombok, JPA entities, Flyway naming, profiles, RabbitMQ with DLQs, JobRunr, observability (Prometheus, Loki, Jaeger, Sentry), Gradle and Docker.",
+  "author": {
+    "name": "Elvinasl",
+    "url": "https://github.com/Elvinasl"
+  },
+  "homepage": "https://github.com/Elvinasl/agent-skills",
+  "repository": "https://github.com/Elvinasl/agent-skills",
+  "license": "MIT",
+  "keywords": ["java", "spring-boot", "conventions", "lombok", "jpa", "flyway", "rabbitmq", "jobrunr", "observability", "gradle"]
+}

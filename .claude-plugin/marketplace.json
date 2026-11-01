@@ -1,0 +1,15 @@
+{
+  "name": "elvinasl-skills",
+  "description": "Agent skills for building Java / Spring Boot backends the same way every time.",
+  "owner": {
+    "name": "Elvinasl",
+    "url": "https://github.com/Elvinasl"
+  },
+  "plugins": [
+    {
+      "name": "spring-boot-house-style",
+      "source": "./plugins/spring-boot-house-style",
+      "description": "Java 21 / Spring Boot 3 house style: package layout, naming, Lombok, entities, Flyway, profiles, RabbitMQ, JobRunr, observability, Gradle, Docker."
+    }
+  ]
+}
