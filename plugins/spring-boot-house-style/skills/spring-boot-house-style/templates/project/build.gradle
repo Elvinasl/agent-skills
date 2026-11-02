@@ -1,0 +1,112 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '4.1.2'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = '__GROUP__'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(__JAVA_VERSION__)
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.compilerArgs.add('-parameters')
+}
+
+sourceSets {
+    integrationTest {
+        compileClasspath += sourceSets.main.output + sourceSets.test.output
+        runtimeClasspath += sourceSets.main.output + sourceSets.test.output
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    integrationTestImplementation.extendsFrom testImplementation
+    integrationTestRuntimeOnly.extendsFrom testRuntimeOnly
+    integrationTestCompileOnly.extendsFrom testCompileOnly
+    integrationTestAnnotationProcessor.extendsFrom testAnnotationProcessor
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // spring
+    implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-restclient'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+    // db
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-flyway'
+    // >>>mod:postgres
+    implementation 'org.flywaydb:flyway-database-postgresql'
+    runtimeOnly 'org.postgresql:postgresql'
+    // <<<mod:postgres
+    // >>>mod:mysql
+    implementation 'org.flywaydb:flyway-mysql'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    // <<<mod:mysql
+    // >>>mod:rabbit
+
+    // RabbitMQ
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    // <<<mod:rabbit
+    // >>>mod:jobrunr
+
+    // cron
+    implementation 'org.jobrunr:jobrunr-spring-boot-4-starter:9.0.3'
+    // <<<mod:jobrunr
+    // >>>mod:sentry
+
+    // sentry
+    implementation 'io.sentry:sentry-spring-boot-4-starter:8.62.0'
+    // <<<mod:sentry
+
+    // lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // test
+    testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+
+    // integration test
+    integrationTestImplementation 'org.springframework.boot:spring-boot-testcontainers'
+    integrationTestImplementation 'org.testcontainers:testcontainers-junit-jupiter'
+    // >>>mod:postgres
+    integrationTestImplementation 'org.testcontainers:testcontainers-postgresql'
+    // <<<mod:postgres
+    // >>>mod:mysql
+    integrationTestImplementation 'org.testcontainers:testcontainers-mysql'
+    // <<<mod:mysql
+    // >>>mod:rabbit
+    integrationTestImplementation 'org.testcontainers:testcontainers-rabbitmq'
+    // <<<mod:rabbit
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+tasks.register('integrationTest', Test) {
+    description = 'Runs the integration tests.'
+    group = 'verification'
+    testClassesDirs = sourceSets.integrationTest.output.classesDirs
+    classpath = sourceSets.integrationTest.runtimeClasspath
+    useJUnitPlatform()
+    shouldRunAfter tasks.named('test')
+}

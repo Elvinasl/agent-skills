@@ -1,0 +1,22 @@
+spring:
+    datasource:
+        # >>>mod:postgres
+        url: jdbc:postgresql://localhost:__DB_PORT__/__DB_NAME___dev
+        username: postgres
+        password: password
+        # <<<mod:postgres
+        # >>>mod:mysql
+        url: jdbc:mysql://localhost:__DB_PORT__/__DB_NAME___dev
+        username: root
+        password: password
+        # <<<mod:mysql
+    # >>>mod:rabbit
+    rabbitmq:
+        addresses: localhost:5672
+        username: guest
+        password: guest
+    # <<<mod:rabbit
+
+logging:
+    level:
+        org.hibernate.SQL: DEBUG

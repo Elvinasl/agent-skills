@@ -9,7 +9,7 @@
     {
       "name": "spring-boot-house-style",
       "source": "./plugins/spring-boot-house-style",
-      "description": "Java 21 / Spring Boot 3 house style: package layout, naming, Lombok, entities, Flyway, profiles, RabbitMQ, JobRunr, observability, Gradle, Docker."
+      "description": "Spring Boot 4.1 / JDK 21+ house style with a project scaffolder: feature packages, Lombok, JPA, Flyway, error handling, RabbitMQ, JobRunr, HTTP clients, security, testing."
     }
   ]
 }

@@ -1,0 +1,51 @@
+services:
+    # >>>mod:postgres
+    __APP_NAME__-db:
+        container_name: __APP_NAME__-postgres
+        image: postgres:17-alpine
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: password
+            POSTGRES_DB: __DB_NAME___dev
+        volumes:
+            - ./.docker/postgres:/var/lib/postgresql/data
+        ports:
+            - "__DB_PORT__:5432"
+        networks:
+            - __APP_NAME__-network
+        restart: unless-stopped
+    # <<<mod:postgres
+    # >>>mod:mysql
+    __APP_NAME__-db:
+        container_name: __APP_NAME__-mysql
+        image: mysql:8.4
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_DATABASE: __DB_NAME___dev
+        volumes:
+            - ./.docker/mysql:/var/lib/mysql
+        ports:
+            - "__DB_PORT__:3306"
+        networks:
+            - __APP_NAME__-network
+        restart: unless-stopped
+    # <<<mod:mysql
+    # >>>mod:rabbit
+
+    __APP_NAME__-rabbitmq:
+        container_name: __APP_NAME__-rabbitmq
+        image: rabbitmq:4.1-management
+        environment:
+            RABBITMQ_DEFAULT_USER: guest
+            RABBITMQ_DEFAULT_PASS: guest
+        ports:
+            - "5672:5672"
+            - "15672:15672"
+        networks:
+            - __APP_NAME__-network
+        restart: unless-stopped
+    # <<<mod:rabbit
+
+networks:
+    __APP_NAME__-network:
+        name: __APP_NAME__-network

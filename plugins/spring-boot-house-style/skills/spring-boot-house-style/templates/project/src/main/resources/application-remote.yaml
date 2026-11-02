@@ -1,0 +1,29 @@
+spring:
+    datasource:
+        url: ${DB_URL}
+        username: ${DB_USERNAME}
+        password: ${DB_PASSWORD}
+        hikari:
+            maximum-pool-size: ${DB_POOL_MAX:10}
+            minimum-idle: ${DB_POOL_MIN:2}
+            connection-timeout: 3000
+            idle-timeout: 60000
+            max-lifetime: 1200000
+            leak-detection-threshold: 4000
+    # >>>mod:rabbit
+    rabbitmq:
+        addresses: ${RABBITMQ_ADDRESSES}
+        username: ${RABBITMQ_USERNAME}
+        password: ${RABBITMQ_PASSWORD}
+        virtual-host: ${RABBITMQ_VHOST:/}
+    # <<<mod:rabbit
+
+app:
+    cors:
+        allowed-origins: ${APP_CORS_ALLOWED_ORIGINS}
+# >>>mod:sentry
+
+sentry:
+    dsn: ${SENTRY_DSN}
+    environment: ${APP_ENV}
+# <<<mod:sentry

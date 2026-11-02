@@ -1,0 +1,1 @@
+Flyway migrations. Name versioned files `V{yyyy.MM.dd}_{HH.mm}__{verb}_{table}.sql` using the current local time (`date +%Y.%m.%d_%H.%M`), and repeatable views `R__{Name}_view.sql`. Never edit a migration that has been applied anywhere.

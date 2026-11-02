@@ -1,7 +1,7 @@
 {
   "name": "spring-boot-house-style",
-  "version": "1.0.0",
-  "description": "Opinionated Java 21 / Spring Boot 3 conventions: feature packages, Lombok, JPA entities, Flyway naming, profiles, RabbitMQ with DLQs, JobRunr, observability (Prometheus, Loki, Jaeger, Sentry), Gradle and Docker.",
+  "version": "2.0.0",
+  "description": "Opinionated Spring Boot 4.1 / JDK 21+ code conventions with a project scaffolder: feature packages, Lombok, JPA and Flyway, error handling, RabbitMQ with DLQs, JobRunr, HTTP clients, security and testing.",
   "author": {
     "name": "Elvinasl",
     "url": "https://github.com/Elvinasl"
@@ -9,5 +9,5 @@
   "homepage": "https://github.com/Elvinasl/agent-skills",
   "repository": "https://github.com/Elvinasl/agent-skills",
   "license": "MIT",
-  "keywords": ["java", "spring-boot", "conventions", "lombok", "jpa", "flyway", "rabbitmq", "jobrunr", "observability", "gradle"]
+  "keywords": ["java", "spring-boot", "spring-boot-4", "conventions", "scaffold", "lombok", "jpa", "flyway", "rabbitmq", "jobrunr", "gradle"]
 }
